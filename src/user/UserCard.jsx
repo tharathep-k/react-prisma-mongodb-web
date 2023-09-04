@@ -6,7 +6,7 @@ import editIcon from "../icons/edit.svg";
 import deleteIcon from "../icons/delete.svg";
 import { deleteUser, getUserData } from "./slice/user-slice";
 import ModalEditUser from "./components/ModalEditUser";
-import EditUserInput from "./components/EditUserInput";
+import EditUserForm from "./components/EditUserForm";
 
 export default function UserCard({ name, email, id }) {
   const userId = { id: id };
@@ -53,7 +53,7 @@ export default function UserCard({ name, email, id }) {
           onClose={() => setOpenEdit(false)}
           title="Edit User"
         >
-          <EditUserInput />
+          <EditUserForm id={id} onClose={() => setOpenEdit(false)} />
         </ModalEditUser>
       )}
       <button onClick={handleOnDelete} className="w-[2vw] h-[2vh] mb-4">

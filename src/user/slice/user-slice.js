@@ -32,6 +32,19 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
+export const editUser = createAsyncThunk(
+  "user/editUser",
+  async (input, thunkApi) => {
+    try {
+      const res = await userApi.editUser(input);
+      console.log(res.data);
+    //   return res.data
+    } catch (error) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
