@@ -1,12 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { logout } from "../components/slice/auth-slice";
 import UserCard from "../user/UserCard";
+import { logout } from "../components/slice/auth-slice";
+import { getUserData } from "../user/slice/user-slice";
 
 export default function ShowListPage() {
+  const userData = useSelector((state) => state.user.userData);
+  console.log(userData);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(getUserData());
+  }, []);
 
   const handleOnLogout = async () => {
     await dispatch(logout()).unwrap();
@@ -35,11 +44,10 @@ export default function ShowListPage() {
           Logout
         </button>
       </div>
-      <div className="w-[50vw] h-[90vh] border-2 border-blue-600 flex flex-col items-center">
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
+      <div className="w-[50vw] h-[90vh] border-2 border-blue-600 flex flex-col items-center overflow-y-auto">
+        {userData.map((el) => (
+          <UserCard key={el.id} name={el.name} email={el.email} id={el.id} />
+        ))}
       </div>
     </div>
   );

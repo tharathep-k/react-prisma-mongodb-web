@@ -12,8 +12,20 @@ export const getUserData = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const res = await userApi.getUserData();
-      console.log(".....", res.data);
-      //   return res.data
+      console.log(".....");
+      return res.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  "user/deleteUser",
+  async (id, thunkApi) => {
+    try {
+      //   console.log(id);
+      await userApi.deleteUser(id);
     } catch (error) {
       return thunkApi.rejectWithValue(err.response.data.message);
     }
@@ -29,6 +41,9 @@ const userSlice = createSlice({
         state.userData = action.payload;
       })
       .addCase(getUserData.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
         state.error = action.payload;
       });
   },
