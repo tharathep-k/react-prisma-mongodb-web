@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import InputErrorMessage from "../components/InputMessageError";
 
 import LoginInput from "../components/LoginInput";
+import { login } from "../components/slice/auth-slice";
 import validateLogin from "../components/validator/validate-login";
 
 const initialLogin = {
@@ -14,25 +15,27 @@ export default function LoginPage() {
   const [input, setInput] = useState(initialLogin);
   const [error, setError] = useState({});
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChangeInput = (e) => {
     // console.log(e);
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(input);
+      // console.log(input);
       const result = validateLogin(input);
-      console.dir(result);
+      // console.dir(result);
       if (result) {
         return setError(result);
       }
+
+      await dispatch(login(input)).unwrap();
       setError({});
 
-      navigate("/showlist");
+      alert("Welcome !!");
     } catch (error) {
       console.log(error);
       alert("Login false !!");

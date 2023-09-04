@@ -1,0 +1,37 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+import * as userApi from "../../api/user-api";
+
+const initialState = {
+  error: null,
+  userData: [],
+};
+
+export const getUserData = createAsyncThunk(
+  "user/getUserData",
+  async (_, thunkApi) => {
+    try {
+      const res = await userApi.getUserData();
+      console.log(".....", res.data);
+      //   return res.data
+    } catch (error) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserData.fulfilled, (state, action) => {
+        state.userData = action.payload;
+      })
+      .addCase(getUserData.rejected, (state, action) => {
+        state.error = action.payload;
+      });
+  },
+});
+
+export default userSlice.reducer;
