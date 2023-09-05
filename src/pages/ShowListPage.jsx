@@ -11,8 +11,8 @@ export default function ShowListPage() {
   const userData = useSelector((state) => state.user.userData);
   const filterUserData = useSelector((state) => state.user.filterUserData);
 
-  console.log(userData);
-  console.log(filterUserData);
+  // console.log(userData);
+  // console.log(filterUserData);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -13,7 +13,7 @@ export const getUserData = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const res = await userApi.getUserData();
-      console.log(".....");
+    //   console.log(".....");
       return res.data;
     } catch (error) {
       return thunkApi.rejectWithValue(err.response.data.message);

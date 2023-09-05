@@ -21,7 +21,7 @@ export default function Searchbar() {
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   return (
