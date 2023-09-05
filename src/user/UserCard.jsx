@@ -11,22 +11,23 @@ import EditUserForm from "./components/EditUserForm";
 export default function UserCard({ name, email, id }) {
   const userId = { id: id };
 
-  const [del, setDel] = useState(false);
+  // const [del, setDel] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserData());
-    // console.log("1", del);
-  }, [del]);
+  // useEffect(() => {
+  //   dispatch(getUserData());
+  //   // console.log("1", del);
+  // }, [del]);
 
   const handleOnDelete = async () => {
     try {
       await dispatch(deleteUser(userId)).unwrap;
-      setDel(true);
+      // setDel(true);
       //   console.log("3", del);
       alert("Delete Complete");
+      window.location.reload();
     } catch (error) {
       console.log("Please try again");
     }

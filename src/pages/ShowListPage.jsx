@@ -39,10 +39,12 @@ export default function ShowListPage() {
           Logout
         </button>
       </div>
-      <div className="w-[50vw] h-[90vh] border-2 border-black rounded-lg flex flex-col items-center overflow-y-auto">
-        {filterUserData.map((el) => (
-          <UserCard key={el.id} name={el.name} email={el.email} id={el.id} />
-        ))}
+      <div className="w-[50vw] h-[90vh] border-2 border-black rounded-lg flex flex-col items-center">
+        <div className="w-[46vw] h-[90vh] rounded-lg flex flex-col items-center overflow-auto" >
+          {filterUserData.map((el) => (
+            <UserCard key={el.id} name={el.name} email={el.email} id={el.id} />
+          ))}
+        </div>
       </div>
     </div>
   );
