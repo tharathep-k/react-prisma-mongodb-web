@@ -33,7 +33,7 @@ export default function UserCard({ name, email, id }) {
   };
 
   return (
-    <div className="w-[40vw] h-[10vh] border-2 border-orange-600 my-2 flex justify-evenly items-center">
+    <div className="w-[40vw] h-[10vh] border-2 border-blue-400 rounded-sm my-2 flex justify-evenly items-center">
       <div className="w-[10vw] h-[5vh] border border-black px-2 py-2">
         {name}
       </div>

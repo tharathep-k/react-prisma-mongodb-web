@@ -40,7 +40,7 @@ export default function EditUserForm({ id, onClose }) {
       onClose();
       window.location.reload();
     } catch (error) {
-      alert("Incorrect !!");
+      alert("Please enter a new email address. This email already.");
     }
   };
 
